@@ -9,7 +9,7 @@ function getFileSize(filePath) {
 }
 
 function countLines(fileContent) {
-    return fileContent.split('\n').length-1;
+    return fileContent.split('\n').length - 1;
 }
 
 function countCharacters(fileContent) {
@@ -25,27 +25,27 @@ function displayInfo(filePath, fileContent, args) {
     const result = [];
     const collator = new Intl.Collator();
     const localeOptions = collator.resolvedOptions();
-    
-    if (args.l>-1) {
+
+    if (args.l > -1) {
         result.push(countLines(fileContent).toString());
     }
-    if (args.w>-1) {
+    if (args.w > -1) {
         result.push(countWords(fileContent).toString());
     }
-    if (args.c>-1 && args.m>-1) {
+    if (args.c > -1 && args.m > -1) {
 
-        if (args.c>args.m){
+        if (args.c > args.m) {
             result.push(getFileSize(filePath).toString());
-        }else{
+        } else {
             if (localeOptions.usage === 'sort' && localeOptions.sensitivity === 'variant') {
                 result.push(countCharacters(fileContent).toString());
             } else {
                 result.push(getFileSize(filePath).toString());
             }
         }
-    } else if (args.c>-1) {
+    } else if (args.c > -1) {
         result.push(getFileSize(filePath).toString());
-    } else if (args.m>-1) {
+    } else if (args.m > -1) {
         if (localeOptions.usage === 'sort' && localeOptions.sensitivity === 'variant') {
             result.push(countCharacters(fileContent).toString());
         } else {
@@ -53,7 +53,7 @@ function displayInfo(filePath, fileContent, args) {
         }
     }
     const adjustedResult = result.map(element => String(element).padStart(8, ' '));
-    console.log(adjustedResult.join('')+ `${filePath.padStart(filePath.length+1,' ')}`);
+    console.log(adjustedResult.join('') + `${filePath.padStart(filePath.length + 1, ' ')}`);
 
     return result;
 }
@@ -102,7 +102,7 @@ function main() {
 
     if (files.length > 1) {
         const adjustedTotResult = totResult.map(element => String(element).padStart(8, ' '));
-        console.log(adjustedTotResult.join('')+ ` total`);
+        console.log(adjustedTotResult.join('') + ` total`);
     }
 }
 

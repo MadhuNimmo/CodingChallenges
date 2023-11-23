@@ -31,7 +31,7 @@ async function executeTest(parameters, expectedCommand) {
         reject(stderr);
       }
 
-      const consoleOutput = consoleSpy.mock.calls.map(args => args.join(' ')).join('\n').trim();
+      const consoleOutput = consoleSpy.mock.calls.join('\n').trim();
 
       expect(consoleOutput).toEqual(output);
       resolve();
